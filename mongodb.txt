@@ -1,0 +1,103 @@
+> show dbs
+- to show all databases
+
+> use databasename
+- to active database
+
+> db.createUser(
+{user:"ABC", pwd:"123",
+roles: ['readWrite', "dbAdmin"]})
+- this one is tentative, you can change user for each database
+
+> db.createCollection('collname')
+- to create collection. collection is alike mySQL table. collections writing are     just like json
+
+> db.collname.insert({key:"value"})
+- insert a content to collection
+
+> db.collname.insert([
+{key:"value"},
+{key:"value"},
+{key:"value"}])
+- insert some datas to collection. you need an array [] if you insert more than 
+  one data.
+
+> db.collname.find()
+- show all datas in that collection
+
+> db.collname.find().pretty()
+- show all datas with better look
+
+> db.collname.remove({name:"A"})
+- delete a specific content with name : "A"
+
+> db.collname.update(
+{name:"A"},
+{$set:{name:"B"}})
+- change name:"A" to "B"
+
+> db.collname.update
+
+> db.collname.insertMany([])
+
+> db.collname.insertOne(
+{name:"A", location:{"latitude":123, "longitude":123}, hobbies:["sports","music"])
+
+> db.collname.updateOne(
+{name:"A"},
+{$rename:{"hobbies":"hobby"}})
+- a data with name:"A". it renames the content key 
+
+> db.collname.updateOne(
+{name:"A"},
+{$rename:{"hobbies":"hobby", "name":"nama"}})
+
+> db.collname.updateMany(
+{},
+{$set:{"Nationality":"Indonesia"}})
+- now all datas have new content which is "Nationality":"Indonesia"
+
+> db.collname.replaceOne(
+{name:"A"},
+{city:"ZZ"})
+- a data with specific name:"A" is replaced by city:"ZZ". so name:"A" is no longer in the data 
+
+> db.collname.deleteOne({city:"LA"})
+- delete a data with specific city:"LA"
+
+> db.collname.deleteMany({})
+- delete all datas
+
+> db.collname.find().count()
+- count how many datas 
+
+> db.collname.find({city:"LA"}).count()
+- count how many datas with a specific content city:"LA"
+
+> db.collname.find({city:"LA"}).sort({name:-1})
+- show all datas with specific content city:"LA" and sorted them by name Ascendingly
+
+> db.collname.find({city:"LA"}).sort({name:1})
+- show all datas with specific content city:"LA" and sorted them by name Descendingly
+
+> db.collname.find({city:"LA"}).limit(1)
+- show some datas according to the limit value with specific content city:"LA"
+
+> db.collname.find({age:{$lt:20}})
+- show all datas with specific age is lower than 20
+- lt = lower than
+- lte = lower than equal
+- gt = greater than
+- gte = greater than equal
+
+> db.collname.find(
+{$and:[
+{city:"LA"},{age:{$lt:21}}
+]})
+- show all datas with specific content city:"LA" AND age: lower than 21
+
+- db.collname.find(
+{$or:[
+{name:"A"},{name:"B"}
+]})
+- show all datas with specific content name:"A" OR name:"B"
